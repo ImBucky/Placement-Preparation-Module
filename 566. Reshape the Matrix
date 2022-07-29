@@ -1,0 +1,15 @@
+class Solution:
+    def matrixReshape(self, mat: List[List[int]], r: int, c: int) -> List[List[int]]:
+        if len(mat)*len(mat[0]) != r*c:
+            return mat
+        new_mat = [[0 for i in range(c)] for i in range(r)]
+        old_row = old_col = 0
+        for i in range(r):
+            for j in range(c):
+                new_mat[i][j] = mat[old_row][old_col]
+                if old_col+1 > len(mat[0])-1:
+                    old_col=0
+                    old_row+=1
+                else:
+                    old_col+=1
+        return new_mat
